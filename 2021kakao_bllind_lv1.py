@@ -3,7 +3,7 @@ import re
 def solution(new_id):
     answer = ''
     new_list = []
-    new_id = new_id.lower().replace(' ', 'a') # 소문자로 치환 공백 제거
+    new_id = new_id.lower().replace(' ', '') # 소문자로 치환 공백 제거
     new_id = re.sub(r'[^a-z0-9._-]', '', new_id) # 특수 문자 제거
 
     for a in range(len(new_id)): # 연속된 . 제거
