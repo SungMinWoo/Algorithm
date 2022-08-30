@@ -1,14 +1,14 @@
-from itertools import combinations
-
-
 def solution(numbers, target):
-    answer = 0
-    reverse_numbers = list(reversed(numbers))
+    res = [0]
+    def dfs(i, n, l):
+        if i == len(l):
+            if n == target:
+                res[0] += 1
+            return
+        v = l[i] 
+        dfs(i + 1, n + v, l)
+        dfs(i + 1, n - v, l)
 
-    for num in range(1, (len(numbers)//2)):
-        combi_num = list(combinations(numbers, num))
-        test = list(combinations(reverse_numbers, len(numbers) - num))
-        for count in range(len(combi_num)):
-            if sum(test[count]) - sum(combi_num[count]) == target:
-                answer += 1
-    return answer
+    dfs(0, 0, numbers)
+
+    return res[0]
